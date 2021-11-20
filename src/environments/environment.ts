@@ -4,7 +4,7 @@
 
 
 export const environment = {
-  apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://explorehub-backend.herokuapp.com/',
   production: false,
 
 
