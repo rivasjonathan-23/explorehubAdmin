@@ -1,0 +1,23 @@
+<div *ngIf="message.message" (click)="showDate = !showDate" [class.right]="position == 'right'" class="messageBox">
+  <div class="boxHeader" *ngIf="!message.noSender && adminService.user._id != message.sender">
+    <div  class="profilePhoto">
+      <div class="pPhoto">
+        <span class="material-icons"></span>
+      </div>
+    </div>
+
+    <div class="userInfo">
+      <div class="userName">
+        {{message.senderFullName}}</div>
+      
+    </div>
+  </div>
+  <div class="messageHolder">
+    <div *ngIf="message.withMedia; else plainText" class="messageContent" [innerHTML]="message.message"></div>
+    <ng-template #plainText>
+      <div class="messageContent">{{message.message}} </div>
+    </ng-template>
+  </div>
+  <div [class.ownMessageDate]="position == 'right'" class="date">{{ message.createdAt == "Sending..." ?
+        "Sending..." : message.createdAt | date:'short'}}</div>
+</div>

@@ -1,0 +1,5 @@
+<router-outlet></router-outlet>
+<app-notification-handler></app-notification-handler>
+<div class="hasEnded" *ngIf="processingTimeEnded" (click)="goToProcessingTab()">
+    {{message}}
+</div>

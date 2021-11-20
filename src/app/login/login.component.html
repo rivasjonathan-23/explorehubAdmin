@@ -1,0 +1,43 @@
+<body>
+    <div class="example-card">
+        <mat-card>
+            <div class="logoHolder">
+                <img src="../../assets/logo.png" class="material-icon account">
+            </div>
+            <mat-card-title>Log In</mat-card-title><br><br>
+            <form #loginForm="ngForm" class="example-form">
+                <div class="form-group">
+                    <!-- appearance="fill" -->
+                    <div><span class="material-icons user">account_box</span></div>
+                    <div>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Username</mat-label>
+                            <input type="text" class="form-control" name="username" [(ngModel)]="credentialsForm.username"
+                                required #username="ngModel" matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div><span class="material-icons lock">lock</span></div>
+                    <div>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input [type]="eye ? 'text' : 'password'" class="form-control" name="password" [(ngModel)]="credentialsForm.password"
+                                #password="ngModel" required matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="eye">
+                        <span class="material-icons eye" *ngIf="eye" (click)="showAndHide()"> visibility</span>
+                        <span class="material-icons eye" *ngIf="!eye" (click)="showAndHide()">visibility_off</span>
+                    </div>
+                </div>
+
+                <button type="submit" mat-stroked-button (click)="onSubmit()" [disabled]="loginForm.invalid">LOGIN</button>
+            </form>
+        </mat-card>
+        <div class="overlay" *ngIf="!show">
+            <div class="loader"></div>
+        </div>
+    </div>
+</body>

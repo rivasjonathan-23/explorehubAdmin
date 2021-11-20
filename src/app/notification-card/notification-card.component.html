@@ -1,0 +1,17 @@
+<div class="notifCard" [class.unread]="!notif.opened" (click)="viewNotification()">
+
+  <div class="notifPicHolder" [class.unreadsPic]="!notif.opened">
+    <div class="notifPic">
+      <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+    </div>
+  </div>
+
+  <div class="notifInfo">
+    <div class="notifTitle" [innerHTML]="notif.message">
+    </div>
+    <div class="notifDate">{{notif.createdAt | date:'medium'}}</div>
+  </div>
+  <div class="options">
+    <!-- <ion-icon name="ellipsis-horizontal-outline"></ion-icon> -->
+  </div>
+</div>

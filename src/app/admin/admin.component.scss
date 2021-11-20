@@ -1,0 +1,84 @@
+.toolbar {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999;
+    // height: 60px;
+    width: 100%;
+    display: flex;
+    // background: rgb(4, 128, 230);
+    background: rgb(193, 204, 221);
+    color: rgb(0, 116, 224);
+    box-sizing: border-box;
+    font-weight: 18px;
+    
+    justify-content: space-between;
+    align-items: center;
+    padding:0 10px;
+    span {
+        padding: 2%;
+        color:rgb(0, 104, 173);
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 20px;
+        position: relative;
+    }
+    .title {
+        color:rgb(0, 104, 173);
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 20px;
+    }
+    .tab {
+        margin-left: 15vh;
+        display: flex;
+        align-items: center;
+
+        button {
+            margin:5px 20px;
+            color: rgba(27, 116, 199, 0.9);
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid transparent;
+            border-radius: 0;
+            padding-right: 20px;
+            span {
+                color: rgba(27, 116, 199, 0.9);
+                margin-bottom: 1px;
+            }
+        }
+    }
+
+    .logout {
+        display: flex;
+        align-items: center;
+        margin:10px;
+    }
+    .mat-stroked-button {
+        // letter-spacing: 2px !important;
+        border:none;
+        margin-left: 15px;
+    }
+    .logo{
+        width:40px;
+        height: auto;
+        margin-right: 15px;
+    }
+    .logoAndTitle{
+        display: flex;
+        padding:10px;
+        align-items: center;
+    }
+}
+.appBtn{
+    
+}
+.activeTab {
+    // background-color: rgba(113, 180, 255, 0.5) !important;
+    border-bottom: 3px solid rgb(9, 110, 211) !important;
+    color: rgb(0, 83, 167) !important;
+    
+    span {
+        
+        color: rgb(0, 83, 167) !important;
+    }
+}

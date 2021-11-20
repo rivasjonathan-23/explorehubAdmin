@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <button class="appBtn" (click)="viewPageStats('allBookings', 'Explorehub')">Explorehub Overall Stats</button>
+  <div class="settingsCol">
+    <label>Page Type:</label>&nbsp;
+    <mat-form-field>
+      <mat-select [(ngModel)]="pageTypeSelected" (selectionChange)="filterByPageType()">
+        <mat-option *ngFor="let filter of pageType" [value]="filter.value">
+          {{filter.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="settingsCol">
+    <label>Category:</label>&nbsp;
+    <mat-form-field>
+      <mat-select [(ngModel)]="selectedCategory" (selectionChange)="filterPages()">
+        <mat-option *ngFor="let filter of categories" [value]="filter.value">
+          {{filter.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="settingsCol">
+    <label>Rank By:</label>&nbsp;
+    <mat-form-field>
+      <mat-select [(ngModel)]="sortBy" (selectionChange)="sortPages()">
+        <mat-option *ngFor="let sortType of sortTypes" [value]="sortType.value">
+          {{sortType.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <table>
+    <tr>
+      <th colspan="4">Page Details</th>
+      <th style="text-align:center" colspan="3">Bookings</th>
+
+      <th style="text-align:center"></th>
+    </tr>
+    <tr>
+      <th>Title | Location | Creator</th>
+      <th>Page Type</th>
+      <th>Category</th>
+      <th>Date Created</th>
+      <th style="text-align:center">Submitted</th>
+      <th style="text-align:center">Unfinished</th>
+      <th style="text-align:center">Cancelled</th>
+      <th style="text-align:center">Viewed by tourists</th>
+    </tr>
+    <tr *ngFor="let page of pages; let i = index" (click)="viewPageStats(page._id, page.title)">
+      <td>
+        <div class="number">{{i+1}}</div>
+        <div class="bannerPhoto" [ngStyle]="{'background-image': 'url('+page.bannerPhoto+')'}"></div>
+        <div class="pageDetails">
+          <span>{{page.title}} </span>
+          <br> {{page.location.barangay + " "+ page.location.municipality + " " + page.location.city}}
+          <br> {{page.creator.fullName}}
+        </div>
+      </td>
+      <td>{{types[page.pageType]}} </td>
+      <td>{{page.category}}</td>
+      <td>{{page.createdAt | date:'medium'}}</td>
+      <td class="bookingsTotal">{{page.submitted}}</td>
+      <td class="unfinished">{{page.unfinished}}</td>
+      <td class="cancelBookingsTotal">{{page.cancelled}}</td>
+      <td class="visitsTotal">{{page.visits}}</td>
+    </tr>
+   
+  </table>
+  <div *ngIf="loading" class="loading">
+    Loading...
+  </div>
+</div>

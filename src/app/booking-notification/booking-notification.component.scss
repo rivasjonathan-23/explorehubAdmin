@@ -1,0 +1,105 @@
+.status {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    // top: 60px;
+    left: 0;
+    padding:0 !important;
+    right: 0;
+    // height: 60px;
+    width: 100%;
+    display: flex;
+}
+
+.focused_new {
+    border-bottom:3px solid #25a9eb !important;
+    color: #0590e0 !important;
+    // background: rgba(0, 0, 0, 0.89) !important;
+}
+
+.focused_pending {
+    color: rgb(4, 163, 163) !important;
+    border-bottom:3px solid rgb(86, 187, 187) !important;
+}
+
+.focused_booked {
+    color: rgb(3, 143, 3) !important;
+    border-bottom:3px solid rgb(132, 197, 132) !important;
+}
+
+.focused_declined {
+    color: rgb(185, 3, 3) !important;
+    border-bottom:3px solid rgb(216, 149, 149) !important;
+}
+
+#new,
+#pending,
+#booked,
+#declined {
+    font-size: 16px;
+}
+
+#new {
+    color: rgba(10, 154, 239, .6);
+    // background: rgbaa(0, 0, 0, 0.89);
+}
+
+#pending {
+    color: rgba(3, 124, 124, .6);
+}
+
+#booked {
+    color: rgba(4, 146, 4, .6);
+}
+
+#declined {
+    color: rgba(179, 7, 7, .6);
+}
+
+.tab {
+    // padding: 10px 40px !important;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+    border-radius: 0 !important;
+    margin:0 20px !important;
+    padding-right: 25px;
+    span {
+        font-size: 20px;
+        margin-right: 5px;
+        margin-bottom: 2px;
+    }
+}
+
+.service {
+    color: white;
+    font-weight: inherit;
+}
+
+.mat-raised-button {
+    background: rgb(0, 153, 255);
+    color: white;
+    margin-left: 13%;
+}
+.mat-toolbar-row{
+    // height: unset !important;
+    background: #eff4f757;
+
+}
+
+
+
+.badge,
+.button {
+    margin: 4%;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    padding:0;
+    top: 0;
+}
+
+.focused_notif {
+    background-color: 3px dodgerblue !important;
+}

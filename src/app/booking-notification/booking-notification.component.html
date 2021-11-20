@@ -1,0 +1,27 @@
+<mat-toolbar class="container">
+    <mat-toolbar-row class="status">
+        <div class="statlabel">
+            <button mat-button [class.focused_new]="adminService.currentPath == 'new'" (click)="goTo('new')" class="tab"
+                id="new">
+                <span class="material-icons">
+                    hourglass_empty
+                </span>
+                New Bookings</button>
+            <button mat-button [class.focused_pending]="adminService.currentPath == 'processing'" (click)="goTo('processing')"
+                class="tab" id="pending">
+                <span class="material-icons">rotate_right</span>
+                Processing</button>
+            <button mat-button [class.focused_booked]="adminService.currentPath == 'booked'" (click)="goTo('booked')"
+                class="tab" id="booked">
+                <span class="material-icons">
+                        check
+                </span>
+                Booked</button>
+            <button mat-button [class.focused_declined]="adminService.currentPath == 'declined'" (click)="goTo('declined')"
+                class="tab" id="declined">
+                <span class="material-icons">close</span>
+                Rejected</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

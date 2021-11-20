@@ -1,0 +1,147 @@
+<div class="title">
+    <div style="display: flex; margin-bottom: 10px; align-items: center;">
+        <div class="back" (click)="goBack()">
+            <span class="material-icons">arrow_back</span>
+        </div>
+        <h3>STATISTICS</h3>
+    </div>
+    <h1>{{pageTitle}}</h1>
+</div>
+
+<div class="chartHeader">
+    <div>
+        <div class="totals" *ngIf="allBookings.length == 0 && !loading">No data</div>
+        <div *ngIf="allBookings.length > 0" class='totals'><b>{{submitted}}</b> submitted booking{{submitted > 1 ? "s":
+            ""}} &nbsp;&nbsp;&nbsp; <b>{{cancelled}}</b> cancelled booking{{cancelled > 1 ? "s": ""}}
+            &nbsp;&nbsp;&nbsp; <b>{{unfinished}}</b> unfinished booking{{unfinished> 1 ? "s": ""}}</div>
+        <div class="dateRange">
+            <h4 class="inputLabel">View By:</h4>&nbsp;
+            <mat-form-field style="margin-right: 20px;">
+                <mat-select [disabled]="allBookings.length == 0" [(ngModel)]="selectedTimeRangeType"
+                    (selectionChange)="setGraph()">
+                    <mat-option *ngFor="let range of timeRange" [value]="range.value">
+                        {{range.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <h4 class="inputLabel" *ngIf="selectedTimeRangeType == 'daily'">Date range: </h4>
+            <mat-form-field *ngIf="selectedTimeRangeType == 'daily'">
+                <!-- <mat-label>Enter a date range</mat-label> -->
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [disabled]="allBookings.length == 0">
+                    <input matStartDate formControlName="start" (dateChange)="selectDateRange()">
+                    <input matEndDate formControlName="end" (dateChange)="selectDateRange()">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+
+            <h4 class="inputLabel" *ngIf="selectedTimeRangeType != 'daily' && dateOptions.length > 1">From:</h4>&nbsp;
+            <mat-form-field style="margin-right: 20px;" *ngIf="selectedTimeRangeType != 'daily' && dateOptions.length > 1">
+                <mat-select [disabled]="allBookings.length == 0" (selectionChange)="setGraph()" [(ngModel)]="startDate" placeholder="Start date" (selectionChange)="dateChange()">
+                    <mat-option *ngFor="let range of dateOptions" [value]="range.value">
+                        {{range.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <h4 class="inputLabel" *ngIf="selectedTimeRangeType != 'daily' && dateOptions.length > 1">To:</h4>&nbsp;
+            <mat-form-field style="margin-right: 20px;" *ngIf="selectedTimeRangeType != 'daily' && dateOptions.length > 1">
+                <mat-select [disabled]="allBookings.length == 0" (selectionChange)="setGraph()" placeholder="End date" [(ngModel)]="endDate" (selectionChange)="dateChange()">
+                    <mat-option *ngFor="let range of dateOptions" [value]="range.value">
+                        {{range.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="legends">
+        <!-- <div class="lgCol">
+            <div class="legend visitedLg">Visited by Tourists</div>
+        </div> -->
+        <div class="lgCol">
+            <div class="legend submittedLg">Submitted Bookings</div>
+            <div class="legend unfinishedLg">Unfinished Bookings</div>
+            <div class="legend cancelledLg">Cancelled Bookings</div>
+        </div>
+    </div>
+</div>
+
+<div class="chart">
+    <div class="noData" *ngIf="allBookings.length == 0">
+        <span *ngIf="loading">Loading...</span>
+        <span *ngIf="!loading">
+            No Data
+        </span>
+
+    </div>
+
+    <div class="loading" *ngIf="settingChart">
+        Loading...
+    </div>
+    <table class="lines">
+        <tr *ngFor="let row of rows.reverse(); index as i">
+            <td *ngIf="row % rowNum == 0 || 10 >= rows.length">
+                <div class="count">{{row}}</div>
+            </td>
+        </tr>
+
+    </table>
+
+    <table class="data">
+        <tr>
+            <td *ngFor="let day of dates; index as i"
+                [ngClass]="{'darker': i % 2 != 0,'hiddenDate': colNum != 0 && i % colNum != 0 || hideDateText}">
+                <div class="col">
+                    <div class="dateData submitted"
+                        [ngStyle]="{'height': (day.submitted? ((day.submitted * 100) / rows.length).toFixed() : 1) + '%' }">
+                        <div class="dataPopup submitted">
+                            <div class="square submitted"></div>
+                            <p>{{day.date}}</p>
+                            <p>Submitted: {{day.submitted}}</p>
+                        </div>
+                    </div>
+                    <div class="dateData unfinished"
+                        [ngStyle]="{'height': (day.unfinished ? ((day.unfinished * 100) / rows.length).toFixed(): 1) + '%' }">
+                        <div class="dataPopup unfinished">
+                            <div class="square unfinished"></div>
+                            <p>{{day.date}}</p>
+                            <p>Unfinished: {{day.unfinished}}</p>
+                        </div>
+                    </div>
+                    <div class="dateData cancelled"
+                        [ngStyle]="{'height': (day.cancelled > 0 ? ((day.cancelled * 100) / rows.length).toFixed(): 1) + '%' }">
+                        <div class="dataPopup cancelled">
+                            <div class="square cancelled"></div>
+                            <p>{{day.date}}</p>
+                            <p>Cancelled: {{day.cancelled}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="dateData visited"
+                        [ngStyle]="{'height': ((day.visited * 100) / rows.length).toFixed() + '%' }">
+                        <div class="dataPopup visited">
+                            <div class="square visited"></div>
+                            <p>{{day.date}}</p>
+                            <p>Visits: {{day.visited}}</p>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="dateLineHolder">
+                    <div class="dateLine"></div>
+                    <div class="dataPopup datePopup">
+                        <p>{{day.date}}</p>
+                    </div>
+                </div>
+                <div class="dateDetails" [ngClass]="{'noNeighbors': colNum != 0}"
+                    *ngIf="(i % colNum == 0 || colNum == 0) && !hideDateText">
+                    {{day.date}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- <button (click)="addRow()">up</button>
+
+<button (click)="minusRow()">down</button> -->

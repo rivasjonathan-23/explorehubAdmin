@@ -1,0 +1,64 @@
+.confirm-dialog-container .mat-dialog-container {
+    border-radius: 0.25em 0.25em 0.4em 0.4em;
+    padding: 0px;
+}
+
+.confirm-dialog-container .content-container {
+    margin: 5px 5px 15px 5px;
+    color: #8f9cb5;
+    display: flex;
+}
+
+.confirm-dialog-container #close-icon:hover {
+    cursor: pointer;
+}
+
+.confirm-dialog-container {
+    height: 50%;
+    width: 100%;
+    /* background-color: #37a1df;
+    color: white; */
+    border-radius: 0px;
+}
+
+#ok-button {
+    background-color: #37a1df;
+    color: white;
+    width: 50%;
+    left: 25%;
+    padding: 0 2% 0 2%;
+}
+
+.content-span {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    text-align: center;
+    padding: 8%;
+    color: #da361bf7;
+    font-size: 20px;
+}
+
+.material-icons {
+    animation-name: material-icons;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    color: rgb(255, 81, 0);
+    font-size: 77px;
+    display: block;
+    margin-left: 37%;
+}
+
+@keyframes material-icons {
+    from {
+        transform: translate(0, 0px);
+    }
+    65% {
+        transform: translate(0, 14px);
+    }
+    to {
+        transform: translate(0, 1px);
+    }
+}

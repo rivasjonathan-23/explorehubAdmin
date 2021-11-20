@@ -1,0 +1,115 @@
+.inputMessageHolder {
+    padding:5px;
+    margin-top: 10px;
+    width:100%;
+    box-sizing: border-box;
+    bottom: 0;
+    left:0;
+    right:0;
+    display: flex;
+    background-color: rgb(150, 195, 240);
+
+
+    .inputMessage {
+        width: 74%;
+        margin: 0;
+        margin-left: 83px;
+        box-sizing: border-box;
+        padding: 8px 5px;
+        border-radius: 4px;
+        background-color: #ffff;
+        border: 1px solid #9aadc5;
+        max-height: 100px;
+    }
+
+    .send {
+        flex-shrink: 0;
+        display: flex;
+        margin-left:5px;
+        border-radius: 4px;
+        padding:0 20px;
+        background-color: rgb(195, 215, 236);
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
+.downer {
+    position: absolute;
+    bottom: 70px;
+    width:100%;
+    text-align: center;
+    background-color:none;
+
+    div {
+        box-shadow: 0 3px 9px rgb(165, 165, 165);
+        background-color: rgb(234, 240, 248);
+        border-radius: 30px;
+        color:dodgerblue;
+        padding:10px 20px;
+        display: inline-block;
+    }
+}
+
+
+.pageContainer {
+    box-sizing: none;
+    overflow-x: visible;
+    padding-top: 20px;
+    box-sizing: border-box;
+    // padding-bottom: 10px;
+    padding-bottom: 0 !important;
+    // height: 400px;
+    position: relative;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
+.noMessages {
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: none;
+    font-size: 19px;
+    p {
+        color:rgb(159, 173, 184);
+    }
+    
+}
+
+#owner {
+    color: rgb(52, 67, 85);
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #eff3f5;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(190, 213, 231);
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(153, 175, 192);
+}

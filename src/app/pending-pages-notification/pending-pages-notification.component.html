@@ -1,0 +1,41 @@
+
+<h1>{{ pages.length }} Page{{ pages.length > 1? 's': '' }} need{{ pages.length > 1? '': 's' }} to be approved</h1>
+
+<div class="container">
+    <mat-card class="example-card" *ngFor="let item of pages" (click)="openModal(item)">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image " [ngStyle]="{'background-image': 'url('+ item.creator.profile + ')'}">
+                    <span *ngIf="!item.creator.profile || !item.creator.profile.includes('explorehub_photos')" class="material-icons"  id = "user"> person_outline</span>
+            </div>
+            <mat-card-title>{{ item.creator.fullName }}</mat-card-title>
+            <mat-card-subtitle>Owner</mat-card-subtitle>
+        </mat-card-header>
+
+            <div class="pagePhoto " [ngStyle]="{'background-image': 'url('+ getPhoto(item.components)+')'}">         
+            </div>
+        <mat-card-content style="margin-bottom:14%">
+            <div *ngFor="let detail of item.components">
+                    <div *ngIf="detail.data.defaultName=='pageName'">
+                        <h3>{{ detail.data.text }}</h3>
+                    </div>
+                    <div *ngIf="detail.data.defaultName=='barangay'||detail.data.defaultName=='municipality'||detail.data.defaultName=='province'">
+                        <p>{{ detail.data.label }}:&nbsp;&nbsp;<span>{{ detail.data.text }}</span></p>
+                    </div>
+            </div>
+            <p>Type: <span>{{ item.pageType == "tourist_spot"? "Tourist Spot": "Service" }}</span> </p>
+        </mat-card-content>
+        <div *ngIf="item.status == 'Pending'; else Processing" class="status"><span class="material-icons pendingIcon">
+                hourglass_empty
+            </span>
+            <div>Pending</div>
+        </div>
+        <ng-template #Processing>
+            <div class="processing"><span class="material-icons processIcon">rotate_right</span>
+                <div>Processing</div>
+            </div>
+        </ng-template>
+    </mat-card>
+    <div class="overlay" *ngIf="show">
+        <div class="loader"></div>
+    </div>
+</div>

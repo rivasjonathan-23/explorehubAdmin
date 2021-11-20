@@ -1,0 +1,61 @@
+.chart {display: block; padding: 0; margin: 0 40px 40px 40px; position: relative; margin-bottom: 60px;}
+table.lines { box-sizing:  border-box; width: 100%; border-collapse:collapse;  margin: 0; padding: 0; height: 500px;}
+table.lines td {  background: rgba(249, 251, 252, 0.6); box-sizing: border-box; position: relative;}
+table.lines tr {box-sizing: border-box;border: 1px solid rgb(200, 215, 231); color: rgb(107, 114, 121);}
+.count {position: absolute; left: -25px; text-align: right; width: 20px;  bottom: -10px;}
+table.line {border-bottom: 1px solid rgb(203, 210, 219); }
+table.data { border-bottom: 2px solid dodgerblue; padding: 0; margin: 0; border-collapse: collapse; width: 100%; position: absolute;   height: 100%; top: 0; left: 0; right: 0; bottom: 0;}
+table.data td { position: relative;}
+.darker {background-color: rgba(236, 241, 247, 0.5);}
+table.data td:hover { background-color: rgba(133, 237, 255, 0.5); outline: 1px solid dodgerblue;
+    .dateDetails { color:rgb(0, 126, 252);  display: block; font-weight: 600;}
+}
+.loading {position: absolute; top:0; left: 0; right:0; bottom:0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, .7); z-index: 999999999; display: flex; align-items: center; justify-content: center; font-size: 25px;}
+
+table.data tr {padding: 0; margin: 0}
+.col {height: 100%; display: flex; align-items: flex-end; justify-content: center; }
+.dateData {  width: 23%; margin: 0 1px; border-top-left-radius: 50px; border-top-right-radius: 50px; position: relative;}
+.dateData:hover {
+    div { display: block;}
+}
+.submitted {background-color: rgb(0, 187, 84);}
+.cancelled {background-color:rgb(240, 13, 51);}
+.unfinished {background-color: rgb(241, 158, 33) ;}
+.visited {background-color: rgb(200, 56, 219);}
+.dateDetails {position: absolute; color: rgb(133, 139, 145); bottom: -20px; display: block;width: 100%; padding: 10px; text-align: center;  height: 2px ; overflow: visible;}
+.dateLineHolder {position: absolute; bottom: -4px; height: 7px; width: 100%; background-color: none; justify-content: center; display: flex;}
+.dateLine {height: 100%; width: 85%; background-color: dodgerblue;}
+.noNeighbors {padding: 0 !important; bottom: -10px; }
+.dataPopup {position: absolute; top: 0px; padding: 0px 7px 7px 25px; left: 20px; white-space: pre; background-color: white; color: rgb(37, 57, 124);z-index: 99999; display: none; border-radius: 2px; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), 0 1px 8px rgba(0, 0, 0, 0.1); 
+    p {margin: 0;}
+}
+.square {width: 10px; height: 10px; border-radius: 2px; position: relative; top: 14px; left: -15px;}
+.hiddenDate:hover {
+    .datePopup { display: block; padding: 8px 10px !important; left: 0; top: 10px;} 
+}
+
+.chartHeader { display: flex; justify-content: space-between; margin: 10px 40px 0 40px;padding-top: 15px; align-items: center; border-top: 1px solid rgb(174, 203, 230);}
+.title {margin: 10px 40px 0 40px; padding: 10px 0;}
+.legends {display: flex; padding: 10px 0;  }
+.legend { margin-left: 30px; color:rgb(37, 53, 68); position: relative; }
+.lgCol:first-child {margin-right: 20px;}
+.legend::before {content: " "; height: 15px; width: 15px; display: block; position: absolute; top: 1px; left: -22px;border-radius: 5px;}
+.submittedLg::before { background-color: rgb(0, 187, 84) ;}
+.unfinishedLg::before { background-color: rgb(241, 158, 33) ;}
+.cancelledLg::before { background-color: rgb(240, 13, 51);}
+.visitedLg::before { background-color: rgb(200, 56, 219);}
+.dateRange {display: flex; align-items: center; padding: 8px 0;
+    .inputLabel {margin: 0 10px 0 0 !important; color:rgb(68, 106, 141); font-size: 15px;}
+    .dateInput {margin-right: 20px; padding: 5px 10px;border: none; border-bottom: 1px solid rgb(73, 78, 83);}
+}
+.totals { font-size: 17px; color: rgb(67, 105, 139);}
+h3 {margin: 5px 0 0 10px; color: rgb(148, 164, 182); font-size: 20px;  letter-spacing: 2px; }
+h1 {font-size: 35px; color:rgb(34, 96, 158); margin-bottom: 5px;}
+.back {background-color: rgb(232, 239, 243);display: flex; align-items: center;font-size: 18px; padding: 1px; border-radius:4px; cursor: pointer; color:rgb(133, 147, 161);
+    span {font-size: 25px;}
+}
+
+.back:hover {color:dodgerblue; background-color: rgb(214, 226, 230);
+}
+
+.noData { background-color:rgba(224, 238, 245, 0.6); text-align: center; font-size: 25px; color:rgb(91, 94, 97); height: 300px; display: flex; align-items: center; justify-content: center;}

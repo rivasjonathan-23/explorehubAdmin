@@ -1,0 +1,15 @@
+<mat-toolbar class="container">
+    <mat-toolbar-row class="status">
+        <div class="statlabel">
+            <button mat-button [class.focused_pending]="currentPath == 'pendingPages'" (click)="goTo('pendingPages')" id="pending">
+                    <span class="material-icons">rotate_right</span>
+                Pending Pages</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-button [class.focused_online]="currentPath == 'onlinePages'" (click)="goTo('onlinePages')" id="online">
+                    <span class="material-icons">check</span> 
+                Online Pages</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="cont">
+    <router-outlet></router-outlet>
+</div>

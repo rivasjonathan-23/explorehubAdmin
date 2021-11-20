@@ -1,0 +1,92 @@
+.messageBox {
+    padding:0 8px;
+    border-radius: 5px;
+    margin:0 5px;
+    // background-color: rgb(225, 231, 235);
+    
+    
+    .boxHeader {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        
+        
+        .profilePhoto {
+            width:30px;
+            height: 30px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom:5px;
+            background-color: rgb(206, 223, 240);
+
+        }
+        
+        .pPhoto {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ion-icon {
+                font-size: 18px;
+            }
+        }
+
+        .userInfo {
+            margin:5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color:rgb(54, 72, 88);
+
+          
+        }
+    }
+    .messageHolder {
+        display: flex;
+        justify-content: flex-start;
+        .messageContent {
+            padding:10px;
+            max-width: 80%;
+            border-radius: 5px;
+            display: inline-block;
+            color: rgb(45, 65, 87);
+            background-color: rgb(208, 223, 240);
+            white-space: pre-wrap;
+            
+        }
+    }
+}
+
+.date {
+    font-size: 9px;
+    line-height: 8px;
+    margin: 5px 0;
+}
+
+.ownMessageDate {
+    text-align: right !important;
+}
+
+.right {
+    .boxHeader {
+        flex-direction: row-reverse !important;
+
+        .userInfo {
+            text-align: right;
+            margin:5px;
+        }
+
+        .profilePhoto {
+            background-color:rgb(186, 216, 233);
+
+        }
+    }
+    .messageHolder {
+        justify-content: flex-end;
+        .messageContent {
+            background-color: rgb(186, 216, 233);
+        }
+    }
+}

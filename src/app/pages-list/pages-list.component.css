@@ -1,0 +1,22 @@
+table { width: 100%; border-collapse: collapse;}
+table tr {padding: 0;}
+tr:nth-child(odd) {background-color: #f4f7f8;}
+table tr:hover {background-color: rgb(206, 239, 253); cursor: pointer;}
+table tr:first-child { pointer-events: none;}
+table tr td {padding: 8px 5px; text-align: center; color: rgb(62, 88, 105); border: 1px solid rgb(223, 228, 236);}
+table tr td:first-child {text-align: left; display: flex; align-items: center;}
+table th {padding: 11px 5px;background-color: rgb(204, 218, 231); color: rgb(49, 82, 116); text-align: center; border: 1px solid rgb(172, 182, 199); }
+/* table th:first-child {text-align: center;} */
+table th span { vertical-align: middle; font-size: 18px;}
+.wrapper {padding: 10px; max-width: 1400px; margin: 0 auto;}
+.number {padding: 8px;font-weight: bold;}
+.bannerPhoto { border-radius: 8px;    border-radius: 8px; width: 75px;height: 56px; background-size: cover; background-position: center; background-repeat: no-repeat; display: inline-block;}
+.pageDetails {display: inline; margin-left: 10px; vertical-align: top; font-size: 13px; line-height: 15px;color: rgb(102, 120, 133);}
+.pageDetails span {font-size: 16px; line-height: 24px;color: rgb(0, 102, 185); font-weight: 500;}
+.bookingsTotal {font-weight: bold; color: rgb(0, 156, 70) !important; font-size: 16px !important; text-align: center !important;}
+.cancelBookingsTotal {font-weight: bold; color: rgb(185, 0, 31) !important; font-size: 16px !important; text-align: center !important;}
+.visitsTotal {font-weight: bold; color: rgb(170, 0, 192) !important; font-size: 16px !important; text-align: center !important;}
+.unfinished {font-weight: bold; color: rgb(189, 113, 0)  !important; font-size: 16px !important; text-align: center !important;}
+.appBtn {float: right; padding: 8px 20px;; border: none; background-color: dodgerblue; color: white; border-radius: 5px; margin: 10px 0; }
+.settingsCol {display: inline; margin-right:20px;}
+.loading {background-color: rgb(246, 250, 253); text-align: left; padding: 25px; font-size: 18px; border: 1px solid rgb(223, 228, 236)}

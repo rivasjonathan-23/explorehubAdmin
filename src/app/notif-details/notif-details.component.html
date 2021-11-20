@@ -1,0 +1,254 @@
+<mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab label="Information">
+        <div [ngStyle]="{'height.px': modalContainerHeight}" class="modalContainer">
+
+            <div *ngFor="let component of data.components">
+                <div *ngIf="component.type == 'photo'" class="pageImage pageField">
+                    <img class="spot" *ngFor="let image of component.data" src="{{ image.url }}" style="width:555px; height:auto" (click)="clickedPic = image.url">
+                </div>
+                <div *ngIf="component.type == 'text'" [ngClass]="component.styles" class="pageField">
+                    <div [ngClass]="{pageTextComp: component.data.defaultName != 'pageName', 
+                pageNameComp: component.data.defaultName == 'pageName'}">
+                        <p>{{component.data.text}}</p>
+                    </div>
+                </div>
+                <div *ngIf="component.type == 'labelled-text'" class="labelled-text pageField">
+                    <p class="lb-label">{{component.data.label}}</p>
+                    <p class="lb-text">{{component.data.text}}</p>
+                </div>
+                <div *ngIf="component.type == 'bullet-form-text'" class="pageField bullet_form_text">
+                    <p class="bft-label">{{component.data.label}}</p>
+                    <ol class="list" *ngIf="component.data.orderedList; else unordered">
+                        <li *ngFor="let item of component.data.list">{{item.text}}</li>
+                    </ol>
+                    <ng-template #unordered>
+                        <ul class="list">
+                            <li *ngFor="let item of component.data.list">{{item.text}}</li>
+                        </ul>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="pageServices">
+                <div *ngFor="let service of data.services" class="itemList">
+                    <div *ngIf="service.type == 'item-list'">
+
+                        <div *ngFor="let item of service.data">
+                            <div *ngIf="item.type !='item'">
+                                <div *ngIf="item.type == 'text'" [ngClass]="item.styles" class="pageField">
+                                    <div [ngClass]="{pageTextComp: item.data.defaultName != 'pageName', pageNameComp: item.data.defaultName == 'pageName'}">
+                                        <p>{{item.data.text}}</p>
+                                    </div>
+                                </div>
+                                <div *ngIf="item.type == 'labelled-text'" class="labelled-text pageField">
+                                    <p class="lb-label">{{item.data.label}}</p>
+                                    <p class="lb-text">{{item.data.text}}</p>
+                                </div>
+                                <div *ngIf="item.type == 'bullet-form-text'" class="pageField bullet_form_text">
+                                    <p class="bft-label">{{item.data.label}}</p>
+                                    <ol class="list" *ngIf="item.data.orderedList; else unordered">
+                                        <li *ngFor="let item of item.data.list">{{item.text}}</li>
+                                    </ol>
+                                    <ng-template #unordered>
+                                        <ul class="list">
+                                            <li *ngFor="let item of item.data.list">{{item.text}}</li>
+                                        </ul>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="serviceItem">
+                            <div *ngFor="let item of service.data">
+
+                                <!-- <div class="scrollableList"> -->
+                                <!-- <div class="serviceItem"> -->
+                                <div class="itemService" *ngIf="item.type == 'item'">
+                                    <div *ngFor="let component of item.data">
+                                        <div *ngIf="component.type == 'photo'" class="itemImage pageField">
+                                            <img class="spot" *ngFor="let image of component.data" src="{{ image.url }}"
+                                            (click)="clickedPic = image.url"
+                                                style="width:100%; height:auto">
+                                        </div>
+                                        <!-- <div class="pagePhoto" [ngStyle]="{'background-image': 'url('+ getPhoto(item.data)+')'}">
+                                        </div> -->
+
+                                        <div *ngIf="component.type == 'text'" [ngClass]="component.styles" class="pageField">
+                                            <div [ngClass]="{pageTextComp: component.data.defaultName != 'pageName', 
+                                        pageNameComp: component.data.defaultName == 'pageName'}">
+                                                <p>{{component.data.text}}</p>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="component.type == 'labelled-text'" class="labelled-text pageField">
+                                            <p class="lb-label">{{component.data.label}}</p>
+                                            <p class="lb-text">{{component.data.text}}</p>
+                                        </div>
+                                        <div *ngIf="component.type == 'bullet-form-text'" class="pageField bullet_form_text">
+                                            <p class="bft-label">{{component.data.label}}</p>
+                                            <ol class="list" *ngIf="component.data.orderedList; else unordered">
+                                                <li *ngFor="let item of component.data.list">{{item.text}}</li>
+                                            </ol>
+                                            <ng-template #unordered>
+                                                <ul class="list">
+                                                    <li *ngFor="let item of component.data.list">{{item.text}}</li>
+                                                </ul>
+                                            </ng-template>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bookingInfo">
+                <div class="bookingInfoTitle">Booking Form</div>
+
+                <div class="pageInputField" *ngFor="let inputField of data.bookingInfo">
+                    <div class="prop">
+                        <div class="inputLabel">Label: </div>
+                        <div>{{inputField.data.label}}</div>
+                    </div>
+
+                    <div class="prop">
+                        <div class="inputLabel">Type:</div>
+                        <div>{{types[inputField.type]}}</div>
+                    </div>
+
+
+                    <div class="prop">
+                        <div class="inputLabel">Required:</div>
+                        <div>{{inputField.data.required}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.Instructions">
+                        <div class="inputLabel">Instructions:</div>
+                        <div>{{inputField.data.Instructions}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.defaultValue">
+                        <div class="inputLabel">Default Value:</div>
+                        <div> {{inputField.data.defaultValue}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.min">
+                        <div class="inputLabel">Minimum:</div>
+                        <div>{{inputField.data.min}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.max">
+                        <div class="inputLabel"> Maximum:</div>
+                        <div>{{inputField.data.max}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.customDays && inputField.data.customDays.length > 0">
+                        <div class="inputLabel"> Days:</div>
+                        <div>{{inputField.data.customDays.join(", ")}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.customDates && inputField.data.customDates.length > 0">
+                        <div class="inputLabel"> Dates:</div>
+                        <div>{{inputField.data.customDates.join(", ")}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.customYears && inputField.data.customYears.length > 0">
+                        <div class="inputLabel"> Years:</div>
+                        <div>{{inputField.data.customYears.join(", ")}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.customMonths && inputField.data.customMonths.length > 0">
+                        <div class="inputLabel"> Months:</div>
+                        <div>{{inputField.data.customMonths.join(", ")}}</div>
+                    </div>
+
+                    <div class="prop" *ngIf="inputField.data.type != 'choice-input'">
+                        <div class="inputLabel">{{types[inputField.type]}}&nbsp;Type:</div>
+                        <div>{{inputType[inputField.type][inputField.data.type? inputField.data.type: 'none']}}</div>
+                    </div>
+
+
+
+                    <div class="prop" *ngIf="inputField.data.choices">
+                        <div class="inputLabel">Choices:</div>
+                        <div class="list">
+                            <div *ngFor="let choice of inputField.data.choices">{{choice.text}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="pageDocuments">
+                <div class="documents">
+                    <h3>Business Permit:</h3>
+                    <div class="docPic" (click)="clickedPic = pagesData[0].pageDocuments?.businessPermit"  [ngStyle]="{'background-image': 'url('+ pagesData[0].pageDocuments?.businessPermit+')'}">
+                        {{!pagesData[0].pageDocuments?.businessPermit ? "No business permit submitted": ""}}
+                    </div>
+                </div>
+                <div class="documents">
+                    <h3>Owner Valid ID:</h3>
+                    <div class="docPic" (click)="clickedPic = pagesData[0].pageDocuments?.ownerValidId" [ngStyle]="{'background-image': 'url('+ pagesData[0].pageDocuments?.ownerValidId+')'}">
+                        {{!pagesData[0].pageDocuments?.ownerValidId ? "No valid ID submitted": ""}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="modalFooter" *ngIf="pagesData[0].status === 'Pending'">
+            <div class="modal-footer" align="start" *ngFor="let item of pagesData">
+
+                <button mat-button mat-dialog-close id="modal-cancel-button"> <span class="material-icons">keyboard_arrow_left</span>Back</button>
+
+                <button mat-button cdkFocusInitial id="process" (click)="getProcessPage(item)">On Process
+                    <span class="material-icons">sync</span>
+                </button>
+            </div>
+        </div> -->
+        
+        <div class="modalFooter" *ngIf="pagesData[0].status === 'Pending'">
+            <div class="modal-footer" align="start" *ngFor="let onlineItem of pagesData">
+                <button mat-button mat-dialog-close id="modal-cancel-button"> <span class="material-icons">keyboard_arrow_left</span>Close</button>
+                <button mat-button id="approve" (click)="toApprove(onlineItem)">Approve
+                    <span class="material-icons">check_circle</span>
+                </button>
+                <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
+                        restore</span></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="getPendingPage(onlineItem)">Pending</button>
+                </mat-menu>
+            </div>
+        </div>
+        <div class="modalFooter" *ngIf="pagesData[0].status === 'Online'">
+            <div class="modal-footer" align="start" *ngFor="let each of pagesData">
+                <button mat-button mat-dialog-close id="modal-cancel-button"> <span class="material-icons">keyboard_arrow_left</span>Close</button>
+                <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
+                        restore</span></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="getPendingPage(each)">Pending</button>
+                    <!-- <button mat-menu-item (click)="getProcessPage(each)">Processing</button> -->
+
+                </mat-menu>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Conversation">
+        <div class="convoHolder">
+            <app-conversation [pageId]="pagesData[0]._id" [tourist]="pagesData[0].creator._id"></app-conversation>
+            <button class="closeModal" mat-button mat-dialog-close>
+                <span class="material-icons"></span>
+                Close
+            </button>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+<div class="viewPic" *ngIf="clickedPic" (click)="clickedPic = null">
+
+    <div class="pic" [ngStyle]="{'background-image': 'url('+ clickedPic +')'}">
+        <div class="closePic" (click)="clickedPic = null"><span class="material-icons">close</span></div>
+    </div>
+</div>
+<div *ngIf="loading" class="loadingOverlay">
+    <div class="loader"></div>
+</div>

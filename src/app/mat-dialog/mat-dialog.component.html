@@ -1,0 +1,17 @@
+<div class="container" *ngIf="!alert">
+    <div class="content-container">
+        <span class="material-icons"> error_outline</span>
+        <span class="content-span full-width">{{data.message}}</span>
+    </div>
+    <button mat-flat-button id="ok-button" (click)="closeDialog()">OK</button>
+    <!-- <button mat-flat-button color="primary">OK</button> -->
+</div>
+
+<div class="container" *ngIf="alert">
+    <div class="content-container">
+        <span class="material-icons"> error_outline</span>
+        <span class="content-span full-width">{{data.message}}</span>
+    </div>
+    <button mat-flat-button id="ok-button" (click)="closeDialog()">OK</button>
+    <!-- <button mat-flat-button color="primary">OK</button> -->
+</div>

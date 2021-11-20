@@ -1,0 +1,27 @@
+<div>
+    <div class="empty" *ngIf="notifications.length == 0 && !loading">
+        <div class="iholder">
+            <span class="material-icons">
+                hourglass_disabled
+            </span>
+        </div>
+        <p>No notifications</p>
+    </div>
+
+    <div class="lightBackground">
+        <div class="cont">
+            <div class="notifGroup" *ngFor="let notif of notifications">
+                <div class="notifHeader">
+                    <div class="title">{{getTitle(notif)}}</div>
+                    <div class="numberOfNotif">{{notif.notifications.length}}</div>
+                </div>
+
+                <app-notification-card *ngFor="let ntf of notif.notifications.reverse()" [notificationGroup]="notif"
+                    [notif]="ntf"></app-notification-card>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" *ngIf="show">
+        <div class="loader"></div>
+    </div>
+</div>
