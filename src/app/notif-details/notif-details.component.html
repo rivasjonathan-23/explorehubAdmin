@@ -213,23 +213,25 @@
                 <button mat-button id="approve" (click)="toApprove(onlineItem)">Approve
                     <span class="material-icons">check_circle</span>
                 </button>
-                <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
+                <button mat-button id="reject" (click)="rejectPage(onlineItem)">Reject
+                    <span class="material-icons">close</span>
+                </button>
+                <!-- <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
                         restore</span></button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="getPendingPage(onlineItem)">Pending</button>
-                </mat-menu>
+                </mat-menu> -->
             </div>
         </div>
-        <div class="modalFooter" *ngIf="pagesData[0].status === 'Online'">
+        <div class="modalFooter" *ngIf="pagesData[0].status === 'Online' || pagesData[0].status === 'Processing' || pagesData[0].status === 'Rejected'">
             <div class="modal-footer" align="start" *ngFor="let each of pagesData">
                 <button mat-button mat-dialog-close id="modal-cancel-button"> <span class="material-icons">keyboard_arrow_left</span>Close</button>
-                <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
-                        restore</span></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="getPendingPage(each)">Pending</button>
-                    <!-- <button mat-menu-item (click)="getProcessPage(each)">Processing</button> -->
-
-                </mat-menu>
+                <!-- <button mat-button [matMenuTriggerFor]="menu" #menuTrigger class="returnTo">Return to <span class="material-icons">
+                        restore</span></button> -->
+    
+                <button mat-button id="pending" (click)="getPendingPage(each)">Return to Pending
+                    <span class="material-icons">restore</span>
+                </button>
             </div>
         </div>
     </mat-tab>

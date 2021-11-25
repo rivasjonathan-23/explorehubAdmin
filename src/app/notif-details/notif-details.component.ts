@@ -98,6 +98,30 @@ export class NotifDetailsComponent implements OnInit {
     })
   }
 
+  
+  rejectPage(page) {
+    this.loading = true
+    const pageName = this.getPageName(page)
+    const notif = {
+      page: page._id,
+      pageName: pageName,
+      mainReceiver: page.creator._id,
+      receiver: page.creator._id,
+      sender: this.adminService.user._id,
+      pageCreator: page.creator._id,
+      subject: page._id,
+      type: "page-provider",
+      status: "Rejected",
+      message: `Your page <b>${pageName}</b> has been <b>Rejected</b>`,
+    }
+    this.adminService.setPageStatus(notif).subscribe((data) => {
+      this.adminService.updatePendingPagesCount.emit()
+      this.adminService.notify({ user: this.adminService.user, pageId: page._id, type: "page-provider", receiver: [page.creator._id], message: `Your page <b>${pageName}</b> has been <b>Rejected</b>` })
+      this.closeDialog("Rejected")
+      this.loading = false
+    })
+  }
+
   getProcessPage(page) {
     this.loading = true
     const pageName = this.getPageName(page)

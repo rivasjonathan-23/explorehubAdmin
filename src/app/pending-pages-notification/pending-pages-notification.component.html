@@ -24,16 +24,21 @@
             </div>
             <p>Type: <span>{{ item.pageType == "tourist_spot"? "Tourist Spot": "Service" }}</span> </p>
         </mat-card-content>
-        <div *ngIf="item.status == 'Pending'; else Processing" class="status"><span class="material-icons pendingIcon">
+        <div *ngIf="item.status == 'Pending'" class="status"><span class="material-icons pendingIcon">
                 hourglass_empty
             </span>
             <div>Pending</div>
         </div>
-        <ng-template #Processing>
+        <div *ngIf="item.status == 'Processing'">
             <div class="processing"><span class="material-icons processIcon">rotate_right</span>
-                <div>Processing</div>
+                <div>Approved</div>
             </div>
-        </ng-template>
+        </div>
+        <div *ngIf="item.status == 'Rejected'">
+            <div class="rejectedStatus"><span class="material-icons rejectedIcon">close</span>
+                <div>Rejected</div>
+            </div>
+        </div>
     </mat-card>
     <div class="overlay" *ngIf="show">
         <div class="loader"></div>

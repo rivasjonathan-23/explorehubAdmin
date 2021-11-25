@@ -1,4 +1,6 @@
 #process,
+#reject,
+#pending,
 #approve {
     margin-right: 30px;
     border-radius: 20px;
@@ -8,8 +10,16 @@
     background-color: #06c8f8;
 }
 
+
+#pending {
+    background-color: orange;
+}
 #approve {
-    background: rgb(5, 243, 5);
+    background: #06c8f8;
+}
+
+#reject {
+    background: rgb(216, 0, 0);
 }
 
 .returnTo {
