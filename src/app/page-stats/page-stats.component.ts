@@ -165,7 +165,7 @@ export class PageStatsComponent implements OnInit {
     });
     bookings.forEach(booking => {
       datesData[booking.createdAt].data.push(booking)
-      if (booking.status == "Unfinished") {
+      if (booking.status == "Unfinished" || booking.status == "Pending") {
         datesData[booking.createdAt].unfinished += 1
         this.getHighestNum(datesData[booking.createdAt].unfinished)
       }

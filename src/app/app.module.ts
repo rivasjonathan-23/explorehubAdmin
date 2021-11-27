@@ -57,6 +57,7 @@ import { OverallStatsComponent } from './overall-stats/overall-stats.component';
 import { PagesListComponent } from './pages-list/pages-list.component'; 
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserListComponent } from './user-list/user-list.component';
 const config: SocketIoConfig = { url:environment.apiUrl, options: {} };
 
 // export function tokenGetter() {
@@ -91,6 +92,7 @@ const config: SocketIoConfig = { url:environment.apiUrl, options: {} };
     PageStatsComponent,
     OverallStatsComponent,
     PagesListComponent,
+    UserListComponent,
     // FilterPipe
   ],
   imports: [

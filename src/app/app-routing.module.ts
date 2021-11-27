@@ -18,6 +18,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { PagesListComponent } from './pages-list/pages-list.component';
 import { PageStatsComponent } from './page-stats/page-stats.component';
 import { OverallStatsComponent } from './overall-stats/overall-stats.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
           { path: '', component: PagesListComponent },
           { path: 'pageStats/:pageId/:pageTitle', component: PageStatsComponent },
           { path: 'overallStats', component: OverallStatsComponent },
+          { path: 'userStats', component: UserListComponent },
         ], canActivate: [AuthGuard],
       },
       {

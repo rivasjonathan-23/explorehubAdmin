@@ -157,7 +157,7 @@ export class PagesListComponent implements OnInit {
           if (data.defaultName == "category") { pageColData.category = data.text }
         });
         pageColData.bookings.forEach((bkng) => {
-          if (bkng.status == "Unfinished") { pageColData.unfinished++ }
+          if (bkng.status == "Unfinished" || bkng.unfinished == "Pending") { pageColData.unfinished++ }
           else if (bkng.status == "Cancelled") { pageColData.cancelled++ }
           else { pageColData.submitted++ }
         })
@@ -174,5 +174,9 @@ export class PagesListComponent implements OnInit {
   viewPageStats(_id, pageTitle) {
     this.router.navigate([`/admin/reports/pageStats`, _id, pageTitle])
   }
+
+  // userStats() {
+  //   this.router.navigate([`/admin/reports/userStats`])
+  // }
 
 }
