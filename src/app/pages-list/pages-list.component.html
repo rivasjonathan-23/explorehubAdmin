@@ -23,7 +23,7 @@
   </div>
 
   <div class="settingsCol">
-    <label>Rank By:</label>&nbsp;
+    <label>Sort By:</label>&nbsp;
     <mat-form-field>
       <mat-select [(ngModel)]="sortBy" (selectionChange)="sortPages()">
         <mat-option *ngFor="let sortType of sortTypes" [value]="sortType.value">
